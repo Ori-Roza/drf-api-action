@@ -43,7 +43,6 @@ jobs:
               python3 create_coverage.py
             env:
               GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
           - name: Commit files
             id: commit
             run: |
