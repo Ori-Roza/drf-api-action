@@ -1,0 +1,16 @@
+*.pyc
+!.gitignore
+dist/
+build/
+env/
+*.egg-info
+.idea
+.pypirc
+.tox/
+.cache/
+venv/
+.venv
+.vscode/
+.coverage
+coverage.xml
+.pytest_cache/

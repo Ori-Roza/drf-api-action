@@ -1,0 +1,13 @@
+name: pre-commit-on-desired-branch
+
+on: [workflow_dispatch]
+jobs:
+  pre-commit-on-desired-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install pylint
+        run: pip install pylint
+      - name: pre-commit
+        uses: pre-commit/action@v3.0.0
