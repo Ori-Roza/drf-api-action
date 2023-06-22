@@ -40,7 +40,6 @@ jobs:
           - name: Run unit tests
             run: |
               python3 -m coverage run -m pytest -vv
-              python3 create_coverage.py
             env:
               GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
