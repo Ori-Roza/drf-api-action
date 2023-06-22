@@ -1,6 +1,6 @@
 # drf-api-actions
 
-[![Python](https://img.shields.io/badge/python-3.7%2C3.8%2C3.9%2C3.10%2C3.11-blue)](https://www.python.org/downloads/)
+[![python - 3.7,3.8,3.9,3.10,3.11](https://img.shields.io/badge/python-3.7%2C3.8%2C3.9%2C3.10%2C3.11-blue)](https://)
 [![CI](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml)
 
 
