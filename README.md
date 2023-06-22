@@ -89,7 +89,7 @@ results = view.dummy_func(**args, page=1)
 
 The `drf-api-actions` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
 
-1. Navigate to the root directory of the `drf-api-actions/tests` project.
+1. Navigate to the root directory of the `drf-api-actions/` project.
 ```bash
 cd tests/
 ```
@@ -97,7 +97,7 @@ cd tests/
 2. Run the tests using `pytest`
 
  ```shell
- pytest
+ python -m pytest -vv
  ```
 
 The tests will be executed, and the results will be displayed in the console.
