@@ -4,7 +4,8 @@ description = "drf_api_actions"
 readme = "README.md"
 requires-python = ">=3.7"
 dynamic = [ "version",]
-dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pylint>=2.17.4"]
+dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=4.5.2",
+  "pylint>=2.17.4", "coverage>=2.7.2"]
 
 [tool.setuptools]
 py-modules = []
