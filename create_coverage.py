@@ -4,12 +4,14 @@ import pybadges
 
 
 def get_coverage_attributes():
-    process_output = subprocess.check_output(['coverage',
-                                 'json',
-                                 '-q',
-                                 '-o',
-                                 '/dev/stdout'])
-    return json.loads(process_output.decode())
+    subprocess.check_output(['coverage',
+                             'json',
+                             '-q',
+                             '-o',
+                             'coverage.json'])
+    with open('coverage.json', 'r') as file_pointer:
+        data = json.load(file_pointer)
+    return data
 
 
 def get_percentage(cov_output):
