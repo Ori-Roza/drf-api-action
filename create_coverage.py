@@ -1,15 +1,15 @@
 import json
-import pybadges
 import subprocess
+import pybadges
 
 
 def get_coverage_attributes():
-    p = subprocess.check_output(['coverage',
+    process_output = subprocess.check_output(['coverage',
                                  'json',
                                  '-q',
                                  '-o',
                                  '/dev/stdout'])
-    return json.loads(p.decode())
+    return json.loads(process_output.decode())
 
 
 def get_percentage(cov_output):
@@ -27,8 +27,8 @@ def create_coverage_badge(percentage):
     badge_svg = pybadges.badge(left_text='coverage',
                                right_text=f"{str(percentage)}%",
                                right_color=color)
-    with open('coverage_badge.svg', 'w') as fp:
-        fp.write(badge_svg)
+    with open('coverage_badge.svg', 'w') as file_pointer:
+        file_pointer.write(badge_svg)
 
 
 if __name__ == '__main__':
