@@ -4,10 +4,15 @@ name: coverage
 # events but only for the master branch
 on:
   pull_request:
-    branches: [master]
+    branches:
+      - master
+    types:
+      - closed
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
   build:
     strategy:
       matrix:
