@@ -1,0 +1,2 @@
+class ActionsAPIException(RuntimeError):
+    pass

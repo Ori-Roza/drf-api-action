@@ -1,9 +1,8 @@
 # drf-api-actions
 
-[![python - 3.8,3.9,3.10,3.11](https://img.shields.io/badge/python-3.8%2C3.9%2C3.10%2C3.11-blue)](https://)
-[![CI](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml)
+[![python - 3.8 | 3.9 | 3.10 | 3.11](https://img.shields.io/badge/python-3.8_|_3.9_|_3.10_|_3.11-blue)](https://)[![CI](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml)
 ![Alt text](coverage_badge.svg)
-
+[![license - MIT](https://img.shields.io/badge/license-MIT-yellow)](https://)
 
 
 The `drf-api-actions` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on existing `action` one.

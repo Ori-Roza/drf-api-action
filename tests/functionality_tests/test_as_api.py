@@ -1,6 +1,9 @@
+import pytest
 from django.test import Client
+
+from drf_api_actions.exceptions import ActionsAPIException
 from tests.test_app.models import DummyModel
-from tests.test_app.views import DummyAPIViewSet
+from tests.test_app.views import DummyAPIViewSet, DummyViewSet
 
 from drf_api_actions.utils import extract_page_number
 
@@ -13,6 +16,15 @@ def test_call_as_api(db):
 
     res = api.dummy(request=None, pk=1)
     assert res["dummy_int"] == 1
+
+
+def test_call_as_api_no_api_mixin(db):
+    api = DummyViewSet()
+    dummy_model = DummyModel()
+    dummy_model.dummy_int = 1
+    dummy_model.save()
+    with pytest.raises(ActionsAPIException):
+        res = api.dummy(request=None, pk=1)
 
 
 def test_call_as_rest(db):

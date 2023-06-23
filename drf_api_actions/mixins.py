@@ -6,6 +6,8 @@ class APIRestMixin(viewsets.GenericViewSet):
     """
     creates our custom get_serializer in order to use our serializer injection
     """
+    api_mixin_exists = True
+
     def get_serializer(self, request_or_query_set=None, *args, **kwargs):  # pylint: disable=keyword-arg-before-vararg
         if isinstance(request_or_query_set, QuerySet):
             # handling ListView (with default queryset & default serializer)
