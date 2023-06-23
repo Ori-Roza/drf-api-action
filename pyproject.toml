@@ -4,14 +4,25 @@ description = "drf_api_actions"
 readme = "README.md"
 requires-python = ">=3.7"
 dynamic = [ "version",]
-dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=4.5.2",
-  "pylint>=2.17.4", "coverage>=2.7.2"]
+dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=4.5.2"]
+version = "1.0.0"
+authors = [
+  { name="Bluevine LTD", email="info@bluevine.com" },
+]
+description = "use the power of restframework also as a library functions"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
 [tool.setuptools]
 py-modules = []
 
 [project.urls]
-Homepage = "https://github.com/bluevine-dev/bv-event"
+Homepage = "https://github.com/bluevine-dev/drf-api-actions"
 
 [build-system]
 # Minimum requirements for the build system to execute.
