@@ -28,6 +28,11 @@ class DummyViewSet(ModelViewSet):
     queryset = DummyModel.objects.all()
     serializer_class = DummySerializer
 
+    @action_api(detail=True, methods=["get"], serializer_class=DummySerializer)
+    def dummy(self, request, **kwargs):
+        serializer = self.get_serializer(instance=self.get_object())
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
 class DummyAPIViewSet(APIRestMixin, ModelViewSet):
     queryset = DummyModel.objects.all()

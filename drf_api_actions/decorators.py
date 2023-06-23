@@ -1,7 +1,8 @@
 from rest_framework.decorators import action
-from drf_api_actions.utils import CustomRequest
+from rest_framework.exceptions import ValidationError
 
-from rest_framework.exceptions import ValidationError  # pylint: disable=wrong-import-order,ungrouped-imports
+from drf_api_actions.utils import CustomRequest
+from drf_api_actions.exceptions import ActionsAPIException
 
 
 def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs):
@@ -12,6 +13,8 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
 
     if function is executed as rest, then mark a ViewSet method as a routable action
     otherwise, injects the kwargs and create a CustomRequest in order to run the function as an api call:
+
+    *** View must inherit APIRestMixin in order to use action_api otherwise ApiActionsException is raised ***
 
     class DummyView(APIRestMixin, ModelViewSet):
         queryset = DummyModel.objects.all()
@@ -26,6 +29,10 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
     view = DummyView()
     results = view.dummy_func(**args)
 
+    returns response.data output and if there is an error raise ApiActionsException
+
+
+    actions docs:
 
     :param methods: A list of HTTP method names this action responds to.
                     Defaults to GET only.
@@ -68,11 +75,13 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
             except Exception as error:
                 current_error = str(error)
             if current_error:
-                raise RuntimeError(current_error)
+                raise ActionsAPIException(current_error)
 
             return results
 
         def run_func_by_method(self, request=None, **kw):
+            if not hasattr(self, 'api_mixin_exists'):
+                raise ActionsAPIException("in order to use action_api you must inherit APIRestMixin in the view")
             if request:
                 return run_as_rest(self, request, **kw)
             return run_as_api(self, **kw)
