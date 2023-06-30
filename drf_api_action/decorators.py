@@ -1,8 +1,8 @@
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 
-from drf_api_actions.utils import CustomRequest
-from drf_api_actions.exceptions import ActionsAPIException
+from drf_api_action.utils import CustomRequest
+from drf_api_action.exceptions import ActionsAPIException
 
 
 def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs):

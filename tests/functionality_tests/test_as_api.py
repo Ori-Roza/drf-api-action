@@ -1,11 +1,11 @@
 import pytest
 from django.test import Client
 
-from drf_api_actions.exceptions import ActionsAPIException
+from drf_api_action.exceptions import ActionsAPIException
 from tests.test_app.models import DummyModel
 from tests.test_app.views import DummyAPIViewSet, DummyViewSet
 
-from drf_api_actions.utils import extract_page_number
+from drf_api_action.utils import extract_page_number
 
 
 def test_call_as_api(db):

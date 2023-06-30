@@ -25,8 +25,8 @@ To use `drf-api-action`, you need to follow these steps:
 Import the necessary classes and decorators from `drf-api-action` and `rest_framework`:
 
 ```python
-from drf_api_actions.decorators import action_api
-from drf_api_actions.mixins import APIRestMixin
+from drf_api_action.decorators import action_api
+from drf_api_action.mixins import APIRestMixin
 from rest_framework.viewsets import ModelViewSet
 ```
 
