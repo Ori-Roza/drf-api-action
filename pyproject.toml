@@ -1,5 +1,5 @@
 [project]
-name = "drf_api_actions"
+name = "drf_api_action"
 description = "use the power of restframework also as a library functions"
 version = "1.0.0"
 readme = "README.md"
@@ -18,7 +18,7 @@ classifiers = [
 py-modules = []
 
 [project.urls]
-Homepage = "https://github.com/Ori-Roza/drf-api-actions"
+Homepage = "https://github.com/Ori-Roza/drf-api-action"
 
 [build-system]
 build-backend = "flit_core.buildapi"

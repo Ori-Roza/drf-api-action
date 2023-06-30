@@ -1,28 +1,28 @@
-# drf-api-actions
+# drf-api-action
 
-[![python - 3.8 | 3.9 | 3.10 | 3.11](https://img.shields.io/badge/python-3.8_|_3.9_|_3.10_|_3.11-blue)](https://)[![CI](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-actions/actions/workflows/tests.yaml)
+[![python - 3.8 | 3.9 | 3.10 | 3.11](https://img.shields.io/badge/python-3.8_|_3.9_|_3.10_|_3.11-blue)](https://)[![CI](https://github.com/Ori-Roza/drf-api-action/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-action/actions/workflows/tests.yaml)
 ![Alt text](coverage_badge.svg)
 [![license - MIT](https://img.shields.io/badge/license-MIT-yellow)](https://)
 
 
-The `drf-api-actions` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on existing `action` one.
+The `drf-api-action` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on existing `action` one.
 This decorator transforms a REST API call in a class view into a function call. It allows you to create an instance of the view and call its functions explicitly.
 
 ## Installation
 
-You can install `drf-api-actions` using pip:
+You can install `drf-api-action` using pip:
 
 ```shell
-pip install drf-api-actions
+pip install drf-api-action
 ```
 
 ## Usage
 
-To use `drf-api-actions`, you need to follow these steps:
+To use `drf-api-action`, you need to follow these steps:
 
 ### Step 1: Import the Required Classes and Decorators
 
-Import the necessary classes and decorators from `drf-api-actions` and `rest_framework`:
+Import the necessary classes and decorators from `drf-api-action` and `rest_framework`:
 
 ```python
 from drf_api_actions.decorators import action_api
@@ -66,7 +66,7 @@ In the example above, we create an instance of `DummyView` and call the `dummy_f
 
 ## Pagination Support
 
-The `drf-api-actions` library provides support for pagination in conjunction with `rest_framework` pagination classes. To enable pagination, include a `page` argument in your API action function and use it when paginating the queryset.
+The `drf-api-action` library provides support for pagination in conjunction with `rest_framework` pagination classes. To enable pagination, include a `page` argument in your API action function and use it when paginating the queryset.
 
 ```python
 @action_api(detail=False, methods=["get"], serializer_class=DummySerializer)
@@ -87,9 +87,9 @@ results = view.dummy_func(**args, page=1)
 
 ## Testing
 
-The `drf-api-actions` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
+The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
 
-1. Navigate to the root directory of the `drf-api-actions/` project.
+1. Navigate to the root directory of the `drf-api-action/` project.
 ```bash
 cd tests/
 ```
@@ -104,9 +104,9 @@ The tests will be executed, and the results will be displayed in the console.
 
 ## Contribution
 
-Contributions to the `drf-api-actions` library are welcome. If you would like to contribute, please follow these steps:
+Contributions to the `drf-api-action` library are welcome. If you would like to contribute, please follow these steps:
 
-1. Fork the `drf-api-actions` repository on GitHub.
+1. Fork the `drf-api-action` repository on GitHub.
 
 2. Create a new branch for your feature or bug fix.
 
@@ -118,8 +118,8 @@ Contributions to the `drf-api-actions` library are welcome. If you would like to
 
 6. Commit your changes and push them to your forked repository.
 
-7. Open a pull request on the original `drf-api-actions` repository and provide a detailed description of your changes.
+7. Open a pull request on the original `drf-api-action` repository and provide a detailed description of your changes.
 
 The maintainers will review your pull request, provide feedback, and work with you to merge the changes into the main repository.
 
-Thank you for considering contributing to `drf-api-actions`!
+Thank you for considering contributing to `drf-api-action`!
