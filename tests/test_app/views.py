@@ -2,8 +2,8 @@ from .models import DummyModel
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from drf_api_actions.decorators import action_api
-from drf_api_actions.mixins import APIRestMixin
+from drf_api_action.decorators import action_api
+from drf_api_action.mixins import APIRestMixin
 from rest_framework.serializers import IntegerField, ModelSerializer, Serializer
 
 
