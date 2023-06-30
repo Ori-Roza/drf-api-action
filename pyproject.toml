@@ -7,7 +7,7 @@ dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=
 authors = [
   { name="Ori Roza", email="ori75660@gmail.com" },
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -18,7 +18,7 @@ classifiers = [
 py-modules = []
 
 [project.urls]
-Homepage = "https://github.com/bluevine-dev/drf-api-actions"
+Homepage = "https://github.com/Ori-Roza/drf-api-actions"
 
 [build-system]
 build-backend = "flit_core.buildapi"
