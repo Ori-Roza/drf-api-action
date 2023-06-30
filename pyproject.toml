@@ -5,7 +5,7 @@ version = "1.0.0"
 readme = "README.md"
 dependencies = ["Django>=4.2.2", "djangorestframework>=3.14.0", "pytest-django>=4.5.2"]
 authors = [
-  { name="Bluevine LTD", email="info@bluevine.com" },
+  { name="Ori Roza", email="ori75660@gmail.com" },
 ]
 requires-python = ">=3.7"
 classifiers = [
