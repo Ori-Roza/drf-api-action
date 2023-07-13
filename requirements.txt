@@ -1,5 +1,5 @@
 asgiref==3.7.2
-Django==4.2.2
+Django==4.2.3
 djangorestframework==3.14.0
 exceptiongroup==1.1.1
 iniconfig==2.0.0
