@@ -1,8 +1,7 @@
 from rest_framework.decorators import action
-from rest_framework.exceptions import ValidationError
 
 from drf_api_action.utils import CustomRequest
-from drf_api_action.exceptions import ActionsAPIException
+from drf_api_action.exceptions import ActionsAPIException, ActionsAPIExceptionMiddleware
 
 
 def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs):
@@ -69,13 +68,20 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
 
             try:
                 ret = func(self, request, **kw)
-                results = {k.lower(): v for k, v in ret.data.items()}
-            except ValidationError as error:
-                current_error = str(error.detail)
-            except Exception as error:
-                current_error = str(error)
+                if isinstance(ret.data, list):
+                    results = [dict(res) for res in ret.data]
+                else:
+                    results = {k.lower(): v for k, v in ret.data.items()}
+            except Exception as error:  # pylint: disable=broad-except
+                current_error = error
+
             if current_error:
-                raise ActionsAPIException(current_error)
+                error_type = type(current_error)
+
+                raised_exception = ActionsAPIExceptionMiddleware(current_error,
+                                                                 error_type=error_type,
+                                                                 traceback=current_error.__traceback__)
+                raise raised_exception  # pylint: disable=raising-npn-exception
 
             return results
 
