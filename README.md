@@ -5,8 +5,17 @@
 [![license - MIT](https://img.shields.io/badge/license-MIT-yellow)](https://)
 
 
-The `drf-api-action` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on existing `action` one.
+The `drf-api-action` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on the existing `action` one.
 This decorator transforms a REST API call in a class view into a function call. It allows you to create an instance of the view and call its functions explicitly.
+
+The benefits of using DRF inside your API functions:
+
+* Arguments validation
+* Pagination
+* Clear separation between function signature and business logic
+* Makes Django DB models accessible in other libraries/web services
+
+And many more!
 
 ## Installation
 
