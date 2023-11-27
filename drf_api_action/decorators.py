@@ -81,7 +81,7 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
                 raised_exception = ActionsAPIExceptionMiddleware(current_error,
                                                                  error_type=error_type,
                                                                  traceback=current_error.__traceback__)
-                raise raised_exception  # pylint: disable=raising-npn-exception
+                raise raised_exception  # pylint: disable=raising-non-exception
 
             return results
 
