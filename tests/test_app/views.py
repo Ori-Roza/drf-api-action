@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+
 from .models import DummyModel
 from rest_framework import status
 from rest_framework.response import Response
@@ -16,12 +18,17 @@ class DummySerializer(ModelSerializer):
 
 
 class GetDummyByIntSerializer(Serializer):
-    id = IntegerField(read_only=True)
-    dummy_int = IntegerField(read_only=True)
+    id = IntegerField(required=False)
+    dummy_int = IntegerField()
 
     class Meta:
         model = DummyModel
-        fields = "__all__"
+        fields = ("dummy_int",)
+
+    def validate(self, attrs):
+        if attrs['dummy_int'] < 1:
+            raise ValidationError(detail={"error": "dummy_int must be greater equal than 0"}, code=400)
+        return attrs
 
 
 class DummyViewSet(ModelViewSet):

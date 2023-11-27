@@ -1,5 +1,6 @@
 import pytest
 from django.test import Client
+from rest_framework.exceptions import ValidationError
 
 from drf_api_action.exceptions import ActionsAPIException
 from tests.test_app.models import DummyModel
@@ -24,7 +25,7 @@ def test_call_as_api_no_api_mixin(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
     with pytest.raises(ActionsAPIException):
-        res = api.dummy(request=None, pk=1)
+        _ = api.dummy(request=None, pk=1)
 
 
 def test_call_as_rest(db):
@@ -65,3 +66,13 @@ def test_pagination_data(db):
     response = api.by_dummy_int(request=None, dummy_int=1, page=2)
     assert extract_page_number(response['previous']) == 1
     assert extract_page_number(response['next']) is None
+
+
+def test_exceptions(db):
+    api = DummyAPIViewSet()
+
+    dummy_model = DummyModel()
+    dummy_model.dummy_int = 1
+    dummy_model.save()
+    with pytest.raises(ValidationError):
+        _ = api.by_dummy_int(request=None, dummy_int=-1)
