@@ -67,11 +67,18 @@ In the example above, the `dummy_func` function is decorated with `action_api`. 
 Create an instance of your view class and call the API actions as regular functions:
 
 ```python
-view = DummyView()
-results = view.dummy_func(**args)
+api = DummyView()
+results = api.dummy_func(**args)
 ```
-
 In the example above, we create an instance of `DummyView` and call the `dummy_func` action with the specified arguments (`args`) and an additional `page` argument.
+
+
+### Step 5: Run as a server
+```bash
+python3 drf-api-action/tests/manage.py
+```
+![Alt text](run_server.png?raw=true "")
+
 
 ## Pagination Support
 

@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -6,7 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 VALIDATE_URL_MIDDLEWARE_ENABLE = True
 
 SECRET_KEY = "***"  # Needed for messages middleware testing
-
+DEBUG = True
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ROOT_URLCONF = "tests.test_app.urls"
 
 INSTALLED_APPS = [  # Default Django apps:
