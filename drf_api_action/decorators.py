@@ -63,24 +63,18 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
             request = CustomRequest(kw, kw)
             self.kwargs = kw
             self.request = request
-            results = None
-            current_error = None
 
             try:
                 ret = func(self, request, **kw)
-                if isinstance(ret.data, list):
+                if isinstance(ret.data, list):  # multiple results
                     results = [dict(res) for res in ret.data]
                 else:
                     results = {k.lower(): v for k, v in ret.data.items()}
             except Exception as error:  # pylint: disable=broad-except
-                current_error = error
-
-            if current_error:
-                error_type = type(current_error)
-
-                raised_exception = ActionsAPIExceptionMiddleware(current_error,
+                error_type = type(error)
+                raised_exception = ActionsAPIExceptionMiddleware(error,
                                                                  error_type=error_type,
-                                                                 traceback=current_error.__traceback__)
+                                                                 traceback=error.__traceback__)  # fixing stack frames
                 raise raised_exception  # pylint: disable=raising-non-exception
 
             return results

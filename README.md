@@ -1,8 +1,8 @@
-![Alt text](drf-api-action-banner.png?raw=true "")
+![Alt text](resources/drf-api-action-banner.png?raw=true "")
 
 
 [![python - 3.8 | 3.9 | 3.10 | 3.11](https://img.shields.io/badge/python-3.8_|_3.9_|_3.10_|_3.11-blue)](https://)[![CI](https://github.com/Ori-Roza/drf-api-action/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/Ori-Roza/drf-api-action/actions/workflows/tests.yaml)
-![Alt text](coverage_badge.svg)
+![Alt text](resources/coverage_badge.svg)
 [![license - MIT](https://img.shields.io/badge/license-MIT-yellow)](https://)
 
 
@@ -15,6 +15,7 @@ The benefits of using DRF inside your API functions:
 * Pagination
 * Clear separation between function signature and business logic
 * Makes Django DB models accessible in other libraries/web services
+* transform the app to a web server in a click
 
 And many more!
 
@@ -71,6 +72,10 @@ Create an instance of your view class and call the API actions as regular functi
 api = DummyView()
 results = api.dummy_func(**args)
 ```
+example:
+![Alt text](resources/running_shell.png?raw=true "")
+
+
 In the example above, we create an instance of `DummyView` and call the `dummy_func` action with the specified arguments (`args`) and an additional `page` argument.
 
 
@@ -78,7 +83,7 @@ In the example above, we create an instance of `DummyView` and call the `dummy_f
 ```bash
 python3 drf-api-action/tests/manage.py
 ```
-![Alt text](run_server.png?raw=true "")
+![Alt text](resources/run_server.png?raw=true "")
 
 
 ## Pagination Support

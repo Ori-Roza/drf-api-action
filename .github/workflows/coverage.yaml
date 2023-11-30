@@ -38,7 +38,7 @@ jobs:
               python -m pip install --upgrade pip
               pip install -r requirements.txt
               python3 -m coverage run -m pytest
-              python3 create_coverage.py
+              python3 resources/create_coverage.py
             env:
               GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
