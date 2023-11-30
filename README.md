@@ -76,7 +76,7 @@ results = api.dummy_func(**args)
 ![Alt text](resources/running_shell.png?raw=true "")
 
 
-In the example above, we create an instance of `DummyView` and call the `dummy_func` action with the specified arguments (`args`) and an additional `page` argument.
+In the example above, we create an instance of `DummyAPIViewSet` and call the `dummy` function with `request=None` and `pk` which tells the View what object to get from the table.
 
 
 ### Step 5: Run as a server
