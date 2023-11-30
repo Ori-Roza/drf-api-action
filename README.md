@@ -72,7 +72,7 @@ Create an instance of your view class and call the API actions as regular functi
 api = DummyView()
 results = api.dummy_func(**args)
 ```
-example:
+
 ![Alt text](resources/running_shell.png?raw=true "")
 
 
