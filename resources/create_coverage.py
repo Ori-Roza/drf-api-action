@@ -8,8 +8,8 @@ def get_coverage_attributes():
                              'json',
                              '-q',
                              '-o',
-                             'coverage.json'])
-    with open('coverage.json', 'r') as file_pointer:
+                             'resources/coverage.json'])
+    with open('resources/coverage.json', 'r') as file_pointer:
         data = json.load(file_pointer)
     return data
 
@@ -29,7 +29,7 @@ def create_coverage_badge(percentage):
     badge_svg = pybadges.badge(left_text='coverage',
                                right_text=f"{str(percentage)}%",
                                right_color=color)
-    with open('coverage_badge.svg', 'w') as file_pointer:
+    with open('resources/coverage_badge.svg', 'w') as file_pointer:
         file_pointer.write(badge_svg)
 
 

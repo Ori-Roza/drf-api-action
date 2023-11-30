@@ -1,7 +1,7 @@
 [project]
 name = "drf_api_action"
 description = "use the power of restframework also as a library functions"
-version = "1.0.3"
+version = "1.0.4"
 readme = "README.md"
 dependencies = ["Django>=4.2.3", "djangorestframework>=3.14.0", "pytest-django>=4.5.2"]
 authors = [
