@@ -6,18 +6,15 @@
 [![license - MIT](https://img.shields.io/badge/license-MIT-yellow)](https://)
 
 
-The `drf-api-action` library is an extension to the `rest_framework` package that provides an additional decorator called `api_action` based on the existing `action` one.
-This decorator transforms a REST API call in a class view into a function call. It allows you to create an instance of the view and call its functions explicitly.
+The drf-api-action Python package is designed to elevate your testing experience for Django Rest Framework (DRF) REST endpoints.
+With the custom decorator api-action, this package empowers you to effortlessly test your REST endpoints as if they were conventional functions.
 
-The benefits of using DRF inside your API functions:
+Features:
 
-* Arguments validation
-* Pagination
-* Clear separation between function signature and business logic
-* Makes Django DB models accessible in other libraries/web services
-* transform the app to a web server in a click
+* **Simplified Testing:** Easily test DRF REST endpoints using the api-action decorator, treating them like regular functions.
 
-And many more!
+* **Seamless Integration:** Replace DRF's action decorator with api-action in your WebViewSet for a smooth transition.
+
 
 ## Installation
 
@@ -53,61 +50,44 @@ class DummyView(APIRestMixin, ModelViewSet):
 
 ### Step 3: Define Your API Actions
 
-Use the `action_api` decorator to define your API actions as functions inside your view class:
+Use the `action_api` decorator instead of `action` decorator to define your API actions as functions inside your view class:
+
+From:
+```python
+    @action(detail=True, methods=["get"], serializer_class=DummySerializer)
+    def dummy(self, request, **kwargs):
+        serializer = self.get_serializer(instance=self.get_object())
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+```
+
+To:
 
 ```python
     @action_api(detail=True, methods=["get"], serializer_class=DummySerializer)
-    def dummy_func(self, request, **kwargs):
+    def dummy(self, request, **kwargs):
         serializer = self.get_serializer(instance=self.get_object())
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 ```
 
 In the example above, the `dummy_func` function is decorated with `action_api`. It specifies that the action does not require a detail argument, supports the `POST` method, and uses the `DummySerializer` for serialization.
 
-### Step 4: Create an Instance and Call API Actions
+### Step 4: test REST methods
 
 Create an instance of your view class and call the API actions as regular functions:
 
 ```python
-api = DummyView()
-results = api.dummy_func(**args)
+def test_dummy():
+    api = DummyView()
+    result = api.dummy(**args)
+    assert result['dummy_int'] == 1
 ```
 
-![Alt text](resources/running_shell.png?raw=true "")
+In the example above, we create an instance of `DummyAPI` and call the `dummy` REST call as if it were a function.
+
+**query parameters/post payload are treated as function arguments**
 
 
-In the example above, we create an instance of `DummyAPIViewSet` and call the `dummy` function with `request=None` and `pk` which tells the View what object to get from the table.
-
-
-### Step 5: Run as a server
-```bash
-python3 drf-api-action/tests/manage.py
-```
-![Alt text](resources/run_server.png?raw=true "")
-
-
-## Pagination Support
-
-The `drf-api-action` library provides support for pagination in conjunction with `rest_framework` pagination classes. To enable pagination, include a `page` argument in your API action function and use it when paginating the queryset.
-
-```python
-@action_api(detail=False, methods=["get"], serializer_class=DummySerializer)
-def dummy_func(self, request, **kwargs):
-    queryset = DummyModel.objects.filter(dummy_int=request.data["dummy_int"]).order_by("id")
-    page = self.paginate_queryset(queryset)
-    serializer = self.get_serializer(page, many=True)
-    return self.get_paginated_response(serializer.data)
-```
-
-In the example above, the `dummy_func` API action supports the `GET` method and includes a `page` argument. The `paginate_queryset` method is used to paginate the `queryset`, and the paginated data is serialized and returned.
-
-To use pagination, pass the `page` argument when calling the API action:
-
-```python
-results = view.dummy_func(**args, page=1)
-```
-
-## Testing
+## Package Testing
 
 The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
 
