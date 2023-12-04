@@ -15,7 +15,7 @@ def test_call_as_api(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
 
-    res = api.dummy(request=None, pk=1)
+    res = api.dummy(request=None, pk='bbb')
     assert res["dummy_int"] == 1
 
 
@@ -64,6 +64,7 @@ def test_pagination_data(db):
     assert obj['dummy_int'] == 1
 
     response = api.by_dummy_int(request=None, dummy_int=1, page=2)
+    breakpoint()
     assert extract_page_number(response['previous']) == 1
     assert extract_page_number(response['next']) is None
 
