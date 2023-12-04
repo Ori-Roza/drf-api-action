@@ -73,18 +73,48 @@ In the example above, the `dummy_func` function is decorated with `action_api`. 
 
 ### Step 4: test REST methods
 
-Create an instance of your view class and call the API actions as regular functions:
+* Create an instance of your view class and call the API actions as regular functions:
 
+On this example, we create an instance of `DummyAPI` and call the `dummy` REST call as if it were a function.
 ```python
 def test_dummy():
     api = DummyView()
-    result = api.dummy(**args)
+    result = api.dummy(pk=1)
     assert result['dummy_int'] == 1
 ```
 
-In the example above, we create an instance of `DummyAPI` and call the `dummy` REST call as if it were a function.
+**query parameters/post payload are treated as function arguments as kwargs**
 
-**query parameters/post payload are treated as function arguments**
+* Exceptions are raised explicitly:
+```python
+def test_dummy():
+    api = DummyView()
+    result = api.dummy(pk='bbb')
+    assert result['dummy_int'] == 1
+```
+
+```
+tests/functionality_tests/test_as_api.py:11 (test_call_as_api)
+self = <django.db.models.fields.BigAutoField: id>, value = 'bbb'
+
+    def get_prep_value(self, value):
+        value = super().get_prep_value(value)
+        if value is None:
+            return None
+        try:
+>           return int(value)
+E           ValueError: invalid literal for int() with base 10: 'bbb'
+```
+
+* Pagination support with `page` kwarg:
+```python
+>>> api = DummyAPIViewSet()
+>>> response = api.by_dummy_int(request=None, dummy_int=1, page=2)
+
+>>> {'count': 2, 'next': None, 'previous': '', 'results': [OrderedDict([('id', 2), ('dummy_int', 1)])]}
+
+```
+
 
 
 ## Package Testing
