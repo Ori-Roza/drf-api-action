@@ -11,13 +11,13 @@ With the custom decorator api-action, this package empowers you to effortlessly 
 
 Features:
 
-* **Simplified Testing:** Easily test DRF REST endpoints using the api-action decorator, treating them like regular functions.
+* **Simplified Testing:** Testing DRF REST endpoints using the api-action decorator, treating them like regular functions.
 
-* **Seamless Integration:** Replace DRF's action decorator with api-action in your WebViewSet for a smooth transition.
+* **Seamless Integration:** Replacing DRF's action decorator with api-action in your WebViewSet seamlessly.
 
-* **Exception Handling:** Instead of getting response with error code, get the real traceback that led to the error.
+* **Exception Handling:** Instead of getting a response with error code, get the real traceback that led to the error.
 
-* **Pagination Support**: Easy to paginate through pages by a single kwarg.  
+* **Pagination Support**: Paginating easily through pages by a single kwarg.  
 
 
 ## Installation
@@ -73,13 +73,13 @@ To:
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 ```
 
-In the example above, the `dummy_func` function is decorated with `action_api`. It specifies that the action does not require a detail argument, supports the `POST` method, and uses the `DummySerializer` for serialization.
+In the example above, the `dummy_func` function is decorated with `action_api`.
+It specifies that the action does not require a detail argument, supports the `POST` method, and uses the `DummySerializer` for serialization.
 
 ### Step 4: test REST methods
 
 * Create an instance of your view class and call the API actions as regular functions:
 
-On this example, we create an instance of `DummyAPI` and call the `dummy` REST call as if it were a function.
 ```python
 def test_dummy():
     api = DummyView()
@@ -97,9 +97,9 @@ def test_dummy():
     assert result['dummy_int'] == 1
 ```
 
-```
+```shell
 tests/functionality_tests/test_as_api.py:11 (test_call_as_api)
-self = <django.db.models.fields.BigAutoField: id>, value = 'bbb'
+self = <django.db.models.fields.BigAutoField: id>, value = 'bb'
 
     def get_prep_value(self, value):
         value = super().get_prep_value(value)
@@ -107,7 +107,26 @@ self = <django.db.models.fields.BigAutoField: id>, value = 'bbb'
             return None
         try:
 >           return int(value)
-E           ValueError: invalid literal for int() with base 10: 'bbb'
+E           ValueError: invalid literal for int() with base 10: 'bb'
+
+../venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py:2053: ValueError
+
+The above exception was the direct cause of the following exception:
+
+queryset = <QuerySet [<DummyModel: DummyModel object (1)>]>, filter_args = ()
+filter_kwargs = {'pk': 'bb'}
+
+    def get_object_or_404(queryset, *filter_args, **filter_kwargs):
+        """
+        Same as Django's standard shortcut, but make sure to also raise 404
+        if the filter_kwargs don't match the required types.
+        """
+        try:
+>           return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+
+../venv/lib/python3.9/site-packages/rest_framework/generics.py:19: 
+
+and so on....
 ```
 
 * Pagination support with `page` kwarg:
@@ -120,13 +139,12 @@ E           ValueError: invalid literal for int() with base 10: 'bbb'
 ```
 
 
-
 ## Package Testing
 
 The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
 
 1. Navigate to the root directory of the `drf-api-action/` project.
-```bash
+```shell
 cd tests/
 ```
 
