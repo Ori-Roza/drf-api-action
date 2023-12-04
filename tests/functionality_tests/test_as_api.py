@@ -15,7 +15,7 @@ def test_call_as_api(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
 
-    res = api.dummy(request=None, pk='bbb')
+    res = api.dummy(request=None, pk=1)
     assert res["dummy_int"] == 1
 
 
