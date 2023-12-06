@@ -13,5 +13,6 @@ venv/
 .vscode/
 .coverage
 coverage.xml
+/coverage.xml
 .pytest_cache/
 .DS_Store
