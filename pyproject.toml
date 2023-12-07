@@ -1,7 +1,7 @@
 [project]
 name = "drf_api_action"
 description = "drf-api-action elevates DRF testing by simplifying REST endpoint testing to a seamless, function-like experience."
-version = "1.0.6"
+version = "1.0.7"
 readme = "README.md"
 license = {file = "LICENSE.txt"}
 dependencies = ["Django>=4.2.3", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pytest-cov>=4.1.0"]
