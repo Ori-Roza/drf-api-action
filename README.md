@@ -157,7 +157,7 @@ The tests will be executed, and the results will be displayed in the console.
 
 ## Example
 
-example of using [drf-api-action](https://github.com/Ori-Roza/drf-api-action-example)
+example of using drf-api-action in a [DRF project](https://github.com/Ori-Roza/drf-api-action-example)
 
 
 ## Contribution
