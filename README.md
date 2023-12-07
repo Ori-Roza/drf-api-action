@@ -154,6 +154,12 @@ cd tests/
 
 The tests will be executed, and the results will be displayed in the console.
 
+
+## Example
+
+example of using [drf-api-action](https://github.com/Ori-Roza/drf-api-action-example)
+
+
 ## Contribution
 
 Contributions to the `drf-api-action` library are welcome. If you would like to contribute, please follow these steps:
