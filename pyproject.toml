@@ -1,12 +1,11 @@
 [project]
 name = "drf_api_action"
-description = "use the power of restframework also as a library functions"
+description = "drf-api-action elevates DRF testing by simplifying REST endpoint testing to a seamless, function-like experience."
 version = "1.0.6"
 readme = "README.md"
+license = {file = "LICENSE.txt"}
 dependencies = ["Django>=4.2.3", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pytest-cov>=4.1.0"]
-authors = [
-  { name="Ori Roza", email="ori75660@gmail.com" },
-]
+
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -17,12 +16,12 @@ classifiers = [
 [tool.setuptools]
 py-modules = []
 
-[project.urls]
-Homepage = "https://github.com/Ori-Roza/drf-api-action"
-
 [build-system]
-build-backend = "flit_core.buildapi"
-requires = ["flit_core >=3.8.0,<4"]
+requires = [
+  "setuptools>=61.0",
+  "setuptools-scm[toml]>=6.2.3",
+]
+build-backend = "setuptools.build_meta"
 
 [tool.pylint.master]
 fail-under = 10.0
