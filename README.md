@@ -13,7 +13,7 @@ Features:
 
 * **Seamless Integration:** Replacing DRF's action decorator with api-action in your WebViewSet seamlessly.
 
-* **Exception Handling:** Instead of getting a response with error code, get the real traceback that led to the error.
+* **Clear Traceback:** Instead of getting a response with error code, get the real traceback that led to the error.
 
 * **Pagination Support**: Paginating easily through pages by a single kwarg.  
 
