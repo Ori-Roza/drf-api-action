@@ -127,7 +127,7 @@ filter_kwargs = {'pk': 'bb'}
 and so on....
 ```
 
-* Pagination support with `page` kwarg:
+* Pagination support with `page`/`offset` kwarg (depends on `DEFAULT_PAGINATION_CLASS`):
 ```python
 >>> api = DummyAPIViewSet()
 >>> response = api.by_dummy_int(request=None, dummy_int=1, page=2)
