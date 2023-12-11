@@ -52,7 +52,7 @@ class DummyView(APIRestMixin, ModelViewSet):
     serializer_class = DummySerializer
 ```
 
-Or
+Another example:
 
 ```python
 class UsersViewSet(APIRestMixin, mixins.RetrieveModelMixin,
