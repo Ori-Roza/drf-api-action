@@ -40,14 +40,24 @@ from drf_api_action.mixins import APIRestMixin
 from rest_framework.viewsets import ModelViewSet
 ```
 
-### Step 2: Define Your View Class
+### Step 2: Inherit `APIRestMixin` in your View 
 
-Create your view class by inheriting from `APIRestMixin` and `ModelViewSet`:
+Create your view class by inheriting the `APIRestMixin` class.
+
+For example, we want to inherit `ModelViewSet` (Could be any ViewSet) in our View:
 
 ```python
 class DummyView(APIRestMixin, ModelViewSet):
     queryset = DummyModel.objects.all()
     serializer_class = DummySerializer
+```
+
+Or
+
+```python
+class UsersViewSet(APIRestMixin, mixins.RetrieveModelMixin,
+                   mixins.ListModelMixin, viewsets.GenericViewSet):
+    serializer_class = UsersSerializer
 ```
 
 ### Step 3: Define Your API Actions
