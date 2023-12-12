@@ -81,8 +81,8 @@ To:
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 ```
 
-In the example above, the `dummy_func` function is decorated with `action_api`.
-It specifies that the action does not require a detail argument, supports the `POST` method, and uses the `DummySerializer` for serialization.
+In the example above, the `dummy` function is decorated with `action_api`.
+It specifies that the action requires a detail argument, supports the `GET` method, and uses the `DummySerializer` for serialization.
 
 ### Step 4: test REST methods
 
