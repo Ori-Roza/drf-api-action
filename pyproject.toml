@@ -4,7 +4,7 @@ description = "drf-api-action elevates DRF testing by simplifying REST endpoint 
 version = "1.0.8"
 readme = "README.md"
 license = {file = "LICENSE.txt"}
-dependencies = ["Django>=4.2.3", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pytest-cov>=4.1.0"]
+dependencies = ["Django>=4.2.8", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pytest-cov>=4.1.0"]
 maintainers = [
   { name="Ori Roza", email="ori75660@gmail.com" },
 ]
