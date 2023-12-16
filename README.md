@@ -17,6 +17,8 @@ Features:
 
 * **Pagination Support**: Paginating easily through pages by a single kwarg.  
 
+## Demo
+
 ![Alt Text](resources/drf-api-action-usage.gif?raw=true "")
 
 
