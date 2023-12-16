@@ -17,6 +17,8 @@ Features:
 
 * **Pagination Support**: Paginating easily through pages by a single kwarg.  
 
+![Alt Text](resources/drf-api-action-usage.gif?raw=true "")
+
 
 ## Installation
 
@@ -95,7 +97,8 @@ def test_dummy():
     assert result['dummy_int'] == 1
 ```
 
-**query parameters/post payload are treated as function arguments as kwargs**
+*query parameters/post payload are treated as function arguments as kwargs*
+
 
 * Exceptions are raised explicitly:
 ```python
