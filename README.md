@@ -169,30 +169,11 @@ cd tests/
 
 The tests will be executed, and the results will be displayed in the console.
 
+## Support & Contribution
+
+For guidance on support & contribution, see the contributing [guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/CONTRIBUTING.md).
+
 
 ## Example
 
 Example of using drf-api-action in a [DRF project](https://github.com/Ori-Roza/drf-api-action-example)
-
-
-## Contribution
-
-Contributions to the `drf-api-action` library are welcome. If you would like to contribute, please follow these steps:
-
-1. Fork the `drf-api-action` repository on GitHub.
-
-2. Create a new branch for your feature or bug fix.
-
-3. Make the necessary changes and additions.
-
-4. Write tests to cover the new functionality or bug fix.
-
-5. Run the existing tests to ensure all tests pass successfully.
-
-6. Commit your changes and push them to your forked repository.
-
-7. Open a pull request on the original `drf-api-action` repository and provide a detailed description of your changes.
-
-The maintainers will review your pull request, provide feedback, and work with you to merge the changes into the main repository.
-
-Thank you for considering contributing to `drf-api-action`!
