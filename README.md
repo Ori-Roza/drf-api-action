@@ -21,7 +21,6 @@ Features:
 
 ![Alt Text](resources/drf-api-action-usage.gif?raw=true "")
 
-
 ## Installation
 
 You can install `drf-api-action` using pip:
@@ -151,7 +150,6 @@ and so on....
 
 ```
 
-
 ## Package Testing
 
 The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
@@ -169,6 +167,10 @@ cd tests/
 
 The tests will be executed, and the results will be displayed in the console.
 
+## Example
+
+Example of using drf-api-action in a [DRF project](https://github.com/Ori-Roza/drf-api-action-example)
+
 ## Support & Contribution
 
 For guidance on support & contribution, see the [contributing guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/CONTRIBUTING.md).
@@ -177,6 +179,10 @@ For guidance on support & contribution, see the [contributing guidelines](https:
 
 For guidance on how to open a bug, see the [bug report template](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/BUG_REPORT.md).
 
-## Example
+## Open an Issue
 
-Example of using drf-api-action in a [DRF project](https://github.com/Ori-Roza/drf-api-action-example)
+For guidance on how to open an issue, see the [issue template](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/ISSUE_TEMPLATE.md).
+
+## Code Of Conduct
+
+[code of conduct](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/CODE_OF_CONDUCT.md).
