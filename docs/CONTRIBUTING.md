@@ -59,7 +59,7 @@ Contributions to the `drf-api-action` library are welcome. If you would like to 
 
 7. Commit your changes and push them to your forked repository.
 
-8. Open a pull request on the original `drf-api-action` repository and provide a detailed description of your changes.
+8. Open a pull request on the original `drf-api-action` repository and provide a detailed description of your changes based on [pull request template](https://github.com/ori-roza/drf-api-action/docs/PULL_REQUEST_TEMPLATE.md).
 
 The maintainers will review your pull request, provide feedback, and work with you to merge the changes into the main repository.
 
