@@ -23,7 +23,7 @@ Closes #IssueNumber
 
 ## Checklist
 
-- [ ] I have read the [contribution guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/CONTRIBUTING.md) and followed the process outlined there.
+- [ ] I have read the [contribution guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/CONTRIBUTING.md) and followed the process outlined there.
 - [ ] My code follows the project's coding standards.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
