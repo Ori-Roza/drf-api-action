@@ -171,8 +171,11 @@ The tests will be executed, and the results will be displayed in the console.
 
 ## Support & Contribution
 
-For guidance on support & contribution, see the contributing [guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/CONTRIBUTING.md).
+For guidance on support & contribution, see the [contributing guidelines](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/CONTRIBUTING.md).
 
+## Bug Report 
+
+For guidance on how to open a bug, see the [bug report template](https://github.com/Ori-Roza/drf-api-action/blob/master/docs/BUG_REPORT.md).
 
 ## Example
 
