@@ -2,18 +2,18 @@ import pytest
 
 from drf_api_action.api_utils import run_as_api
 from drf_api_action.mixins import APIRestMixin
-from drf_api_action.utils import CustomRequest
-from drf_api_action.exceptions import ActionsAPIExceptionMiddleware
 
 
 def run_function(self, func):
-    serializer_class = func.kwargs['serializer_class']
-    return run_as_api(self, func, serializer_class)
+    def api_item(*args, **kwargs):
+        serializer_class = func.kwargs['serializer_class']
+        return run_as_api(self, func, serializer_class, *args, **kwargs)
+    return api_item
 
 
 @pytest.fixture
-def api_action(request):
-    view_set_class = request.keywords['api_action'].kwargs["view_set_class"]
+def action_api(request):
+    view_set_class = request.keywords['action_api'].kwargs["view_set_class"]
 
     class WrapperApiClass(APIRestMixin, view_set_class):
         def __getattribute__(self, item):

@@ -155,3 +155,8 @@ known-third-party = "enchant"
 
 [EXCEPTIONS]
 overgeneral-exceptions = [ "BaseException", "Exception",]
+
+[tool.pytest.ini_options]
+markers = [
+    "action_api",
+]
