@@ -17,7 +17,7 @@ def action_api(request):
 
     class WrapperApiClass(APIRestMixin, view_set_class):
         def __getattribute__(self, item):
-            class_attribute = super(WrapperApiClass, self).__getattribute__(item)
+            class_attribute = super().__getattribute__(item)
 
             if callable(class_attribute) and hasattr(class_attribute, 'detail'):
                 return run_function(self, class_attribute)
