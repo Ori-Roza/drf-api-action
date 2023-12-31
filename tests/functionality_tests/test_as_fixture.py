@@ -1,12 +1,6 @@
 import pytest
-from django.test import Client
-from rest_framework.exceptions import ValidationError
-from drf_api_action.fixtures import action_api
-from drf_api_action.exceptions import ActionsAPIException
 from tests.test_app.models import DummyModel
-from tests.test_app.views import DummyAPIViewSet, DummyViewSet
-
-from drf_api_action.utils import extract_page_number
+from tests.test_app.views import DummyViewSet
 
 
 @pytest.mark.action_api(view_set_class=DummyViewSet)
