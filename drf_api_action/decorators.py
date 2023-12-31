@@ -1,7 +1,6 @@
 from rest_framework.decorators import action
-
-from drf_api_action.utils import CustomRequest
-from drf_api_action.exceptions import ActionsAPIException, ActionsAPIExceptionMiddleware
+from drf_api_action.api_utils import run_as_api
+from drf_api_action.exceptions import ActionsAPIException
 
 
 def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs):
@@ -58,33 +57,12 @@ def action_api(methods=None, detail=None, url_path=None, url_name=None, **kwargs
         def run_as_rest(self, request, **kw):
             return func(self, request, **kw)
 
-        def run_as_api(self, **kw):
-            kw.update({"serializer_class": serializer_class})
-            request = CustomRequest(kw, kw)
-            self.kwargs = kw
-            self.request = request
-
-            try:
-                ret = func(self, request, **kw)
-                if isinstance(ret.data, list):  # multiple results
-                    results = [dict(res) for res in ret.data]
-                else:
-                    results = {k.lower(): v for k, v in ret.data.items()}
-            except Exception as error:  # pylint: disable=broad-except
-                error_type = type(error)
-                raised_exception = ActionsAPIExceptionMiddleware(error,
-                                                                 error_type=error_type,
-                                                                 traceback=error.__traceback__)  # fixing stack frames
-                raise raised_exception  # pylint: disable=raising-non-exception
-
-            return results
-
         def run_func_by_method(self, request=None, **kw):
             if not hasattr(self, 'api_mixin_exists'):
                 raise ActionsAPIException("in order to use action_api you must inherit APIRestMixin in the view")
             if request:
                 return run_as_rest(self, request, **kw)
-            return run_as_api(self, **kw)
+            return run_as_api(self, func, serializer_class, **kw)
 
         run_func_by_method.kwargs = kwargs
         run_func_by_method.__name__ = func.__name__
