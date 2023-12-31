@@ -1,6 +1,7 @@
 import pytest
 from tests.test_app.models import DummyModel
 from tests.test_app.views import DummyViewSet
+from drf_api_action.fixtures import action_api
 
 
 @pytest.mark.action_api(view_set_class=DummyViewSet)
