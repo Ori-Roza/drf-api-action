@@ -15,7 +15,7 @@ def test_call_as_api(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
 
-    res = api.dummy(request=None, pk=1)
+    res = api.api_dummy(request=None, pk=1)
     assert res["dummy_int"] == 1
 
 
@@ -25,7 +25,7 @@ def test_call_as_api_no_api_mixin(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
     with pytest.raises(ActionsAPIException):
-        _ = api.dummy(request=None, pk=1)
+        _ = api.api_dummy(request=None, pk=1)
 
 
 def test_call_as_rest(db):
@@ -35,7 +35,7 @@ def test_call_as_rest(db):
     dummy_model.dummy_int = 1
     dummy_model.save()
 
-    response = test_client.get("/rest-as-api/django-rest/dummy/1/dummy/")
+    response = test_client.get("/rest-as-api/django-rest/api_dummy/1/api_dummy/")
     assert response.data["dummy_int"] == 1
 
 

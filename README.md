@@ -16,7 +16,13 @@ Features:
 
 * **Clear Traceback:** Instead of getting a response with error code, get the real traceback that led to the error.
 
-* **Pagination Support**: Paginating easily through pages by a single kwarg.  
+* **Pagination Support**: Paginating easily through pages by a single kwarg.
+
+This package was designed in a way that you can use it in the following ways:
+
+* As a pytest fixture
+
+* As part of your ViewSet implementation
 
 ## Demo
 
@@ -32,9 +38,48 @@ pip install drf-api-action
 
 ## Usage
 
-To use `drf-api-action`, you need to follow these steps:
+### To use `drf-api-action` as a Pytest fixture, you need to follow these steps:
 
-### Step 1: Import the Required Classes and Decorators
+#### Step 1: Import the Required Classes and our fixture
+
+```python
+import pytest
+from tests.test_app.models import DummyModel
+from tests.test_app.views import DummyViewSetFixture
+from drf_api_action.fixtures import action_api
+```
+
+#### Step 2: use the following action_api mark decorator:
+
+`@pytest.mark.action_api(view_set_class={YOUR VIEW_SET})`
+
+e.g:
+our ViewSet is called `DummyViewSetFixture`
+```python
+@pytest.mark.action_api(view_set_class=DummyViewSetFixture)
+def test_call_as_api_fixture(db, action_api):
+    pass
+```
+Now you can use all `DummyViewSetFixture` functionality!
+
+#### Step 3: write your test
+
+e.g:
+our ViewSet is called `DummyViewSetFixture`
+```python
+@pytest.mark.action_api(view_set_class=DummyViewSetFixture)
+def test_call_as_api_fixture(db, action_api):
+    dummy_model = DummyModel()
+    dummy_model.dummy_int = 1
+    dummy_model.save()
+    res = action_api.api_dummy(pk=1)
+    assert res["dummy_int"] == 1
+
+```
+
+### To use `drf-api-action` in your ViewSet, you need to follow these steps:
+
+#### Step 1: Import the Required Classes and Decorators
 
 Import the necessary classes and decorators from `drf-api-action` and `rest_framework`:
 
@@ -44,7 +89,7 @@ from drf_api_action.mixins import APIRestMixin
 from rest_framework.viewsets import ModelViewSet
 ```
 
-### Step 2: Inherit `APIRestMixin` in your View 
+#### Step 2: Inherit `APIRestMixin` in your View 
 
 Create your view class by inheriting the `APIRestMixin` class.
 
@@ -64,7 +109,7 @@ class UsersViewSet(APIRestMixin, mixins.RetrieveModelMixin,
     serializer_class = UsersSerializer
 ```
 
-### Step 3: Define Your API Actions
+#### Step 3: Define Your API Actions
 
 Use the `action_api` decorator instead of `action` decorator to define your API actions as functions inside your view class:
 
@@ -88,7 +133,7 @@ To:
 In the example above, the `dummy` function is decorated with `action_api`.
 It specifies that the action requires a detail argument, supports the `GET` method, and uses the `DummySerializer` for serialization.
 
-### Step 4: test REST methods
+#### Step 4: test REST methods
 
 * Create an instance of your view class and call the API actions as regular functions:
 

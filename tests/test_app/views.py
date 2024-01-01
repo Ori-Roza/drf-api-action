@@ -1,3 +1,4 @@
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 
 from .models import DummyModel
@@ -36,7 +37,7 @@ class DummyViewSet(ModelViewSet):
     serializer_class = DummySerializer
 
     @action_api(detail=True, methods=["get"], serializer_class=DummySerializer)
-    def dummy(self, request, **kwargs):
+    def api_dummy(self, request, **kwargs):
         serializer = self.get_serializer(instance=self.get_object())
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -53,7 +54,7 @@ class DummyAPIViewSet(APIRestMixin, ModelViewSet):
         }
 
     @action_api(detail=True, methods=["get"], serializer_class=DummySerializer)
-    def dummy(self, request, **kwargs):
+    def api_dummy(self, request, **kwargs):
         serializer = self.get_serializer(instance=self.get_object())
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -64,3 +65,13 @@ class DummyAPIViewSet(APIRestMixin, ModelViewSet):
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, many=True)
         return self.get_paginated_response(serializer.data)
+
+
+class DummyViewSetFixture(ModelViewSet):
+    queryset = DummyModel.objects.all()
+    serializer_class = DummySerializer
+
+    @action(detail=True, methods=["get"], serializer_class=DummySerializer)
+    def api_dummy(self, request, **kwargs):
+        serializer = self.get_serializer(instance=self.get_object())
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
