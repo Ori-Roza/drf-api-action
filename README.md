@@ -6,7 +6,7 @@
 
 
 The drf-api-action Python package is designed to elevate your testing experience for Django Rest Framework (DRF) REST endpoints.
-With the custom decorator api-action, this package empowers you to effortlessly test your REST endpoints as if they were conventional functions.
+With the api-action fixture/custom decorator api-action, this package empowers you to effortlessly test your REST endpoints as if they were conventional functions.
 
 Features:
 
