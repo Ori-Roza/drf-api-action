@@ -10,7 +10,7 @@ SECRET_KEY = "***"  # Needed for messages middleware testing
 DEBUG = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-ROOT_URLCONF = "tests.test_app.urls"
+ROOT_URLCONF = "tests.test_server.urls"
 
 INSTALLED_APPS = [  # Default Django apps:
     "django.contrib.auth",
@@ -23,7 +23,7 @@ INSTALLED_APPS = [  # Default Django apps:
     # third party apps
     "rest_framework",
     # model apps
-    "tests.test_app",
+    "tests.test_server.test_app",
 ]
 
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',

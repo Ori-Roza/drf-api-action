@@ -16,3 +16,6 @@ coverage.xml
 /coverage.xml
 .pytest_cache/
 .DS_Store
+*.sqlite3
+/tests/test_server/test_app/migrations/
+notes
