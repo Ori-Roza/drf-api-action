@@ -12,10 +12,22 @@ authors = [
   { name="Ori Roza", email="ori75660@gmail.com" },
 ]
 requires-python = ">=3.8"
+
+[tool.poetry.plugins.pytest11]
+drf_api_action = "drf_api_action.plugin"
+
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+
+keywords = [
+  "pytest",
+  "mocks",
+  "testing",
+  "fixtures",
+  "tests"
 ]
 
 [tool.setuptools]
@@ -155,6 +167,3 @@ known-third-party = "enchant"
 
 [EXCEPTIONS]
 overgeneral-exceptions = [ "BaseException", "Exception",]
-
-[tool.poetry.plugins.pytest11]
-drf_api_action = "drf_api_action.plugin"
