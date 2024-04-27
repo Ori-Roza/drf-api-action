@@ -156,7 +156,5 @@ known-third-party = "enchant"
 [EXCEPTIONS]
 overgeneral-exceptions = [ "BaseException", "Exception",]
 
-[tool.pytest.ini_options]
-markers = [
-    "action_api",
-]
+[tool.poetry.plugins.pytest11]
+drf_api_action = "drf_api_action.plugin"

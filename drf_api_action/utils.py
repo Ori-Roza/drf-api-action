@@ -1,4 +1,5 @@
 from typing import Optional
+from drf_api_action.exceptions import ActionsAPIExceptionMiddleware
 
 
 class CustomRequest:
@@ -12,6 +13,33 @@ class CustomRequest:
 
     def build_absolute_uri(self, _=None):
         return ''
+
+
+def run_as_api(self, func, serializer_class, *args, **kw):
+    kw.update({"serializer_class": serializer_class})
+    request = CustomRequest(kw, kw)
+    self.kwargs = kw
+    self.request = request
+
+    try:
+        if hasattr(func, 'detail'):
+            # called from pytest fixture
+            ret = func(request, **kw)
+        else:
+            # called straight from viewer
+            ret = func(self, request, **kw)
+        if isinstance(ret.data, list):  # multiple results
+            results = [dict(res) for res in ret.data]
+        else:
+            results = {k.lower(): v for k, v in ret.data.items()}
+    except Exception as error:  # pylint: disable=broad-except
+        error_type = type(error)
+        raised_exception = ActionsAPIExceptionMiddleware(*error.args,
+                                                         error_type=error_type,
+                                                         traceback=error.__traceback__)  # fixing stack frames
+        raise raised_exception  # pylint: disable=raising-non-exception
+
+    return results
 
 
 def extract_page_number(data_input: Optional[str]) -> Optional[int]:
