@@ -1,48 +1,62 @@
-[project]
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
 name = "drf_api_action"
+version = "1.2.0"
 description = "drf-api-action elevates DRF testing by simplifying REST endpoint testing to a seamless, function-like experience."
-version = "1.1.0"
 readme = "README.md"
-license = {file = "LICENSE.txt"}
-dependencies = ["Django>=4.2.8", "djangorestframework>=3.14.0", "pytest-django>=4.5.2", "pytest-cov>=4.1.0"]
-maintainers = [
-  { name="Ori Roza", email="ori75660@gmail.com" },
-]
-authors = [
-  { name="Ori Roza", email="ori75660@gmail.com" },
-]
-requires-python = ">=3.8"
-
-[tool.poetry.plugins.pytest11]
-drf_api_action = "drf_api_action.plugin"
-
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
+authors = ["Ori Roza <ori75660@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/Ori-Roza/drf-api-action"
+homepage = "https://github.com/Ori-Roza/drf-api-action"
 
 keywords = [
   "pytest",
   "mocks",
   "testing",
   "fixtures",
-  "tests"
+  "tests",
+  "django"
 ]
 
-[tool.setuptools]
-py-modules = []
+# Pypi classifiers: https://pypi.org/classifiers/
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Software Development :: Testing",
+  'Framework :: Pytest',
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+]
 
-[project.urls]
-Home-page = "https://github.com/Ori-Roza/drf-api-action"
-Documentation = "https://github.com/Ori-Roza/drf-api-action"
-"Source Code" = "https://github.com/Ori-Roza/drf-api-action"
-"Issue Tracker" = "https://github.com/Ori-Roza/drf-api-action/issues/"
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.test_server.settings"
+python_files = "tests.py test_*.py *_tests.py"
+markers = [
+    "action_api: Viewset"
+]
+testpaths = ["tests"]
+
+[tool.poetry.plugins.pytest11]
+api_action = "drf_api_action.plugin"
 
 
-[build-system]
-build-backend = "flit_core.buildapi"
-requires = ["flit_core >=3.8.0,<4"]
+[tool.poetry.dependencies]
+python = "^3.7"
+importlib_metadata = {version = "^4.5.0", python = "<3.8"}
+Django = ">=4.2.8"
+djangorestframework = ">=3.14.0"
+pytest-django = ">=4.5.2"
+pytest-cov = "4.1.0"
+
 
 [tool.pylint.master]
 fail-under = 10.0

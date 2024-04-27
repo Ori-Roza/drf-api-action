@@ -1,7 +1,7 @@
 """
 Testing URL routing definition
 """
-from .views import DummyAPIViewSet, DummyViewSet
+from tests.test_server.test_app.views import DummyAPIViewSet, DummyViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()

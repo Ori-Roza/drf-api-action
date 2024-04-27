@@ -2,8 +2,8 @@ import pytest
 from rest_framework.exceptions import ValidationError
 
 from drf_api_action.utils import extract_page_number
-from tests.test_app.models import DummyModel
-from tests.test_app.views import DummyViewSetFixture, DummyAPIViewSet
+from tests.test_server.test_app.models import DummyModel
+from tests.test_server.test_app.views import DummyViewSetFixture, DummyAPIViewSet
 
 
 @pytest.mark.action_api(view_set_class=DummyViewSetFixture)

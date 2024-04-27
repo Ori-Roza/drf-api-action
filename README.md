@@ -39,8 +39,8 @@ pip install drf-api-action
 
 ```python
 import pytest
-from tests.test_app.models import DummyModel
-from tests.test_app.views import DummyViewSetFixture
+from tests.test_server.test_app.models import DummyModel
+from tests.test_server.test_app.views import DummyViewSetFixture
 ```
 
 #### Step 2: use the following action_api mark decorator:
@@ -49,13 +49,15 @@ from tests.test_app.views import DummyViewSetFixture
 
 e.g:
 our ViewSet is called `DummyViewSetFixture`
+
 ```python
 import pytest
-from tests.test_app.views import DummyViewSetFixture
+from tests.test_server.test_app.views import DummyViewSetFixture
+
 
 @pytest.mark.action_api(view_set_class=DummyViewSetFixture)
 def test_call_as_api_fixture(db, action_api):
-    pass
+  pass
 ```
 Now you can use all `DummyViewSetFixture` functionality!
 
@@ -63,29 +65,32 @@ Now you can use all `DummyViewSetFixture` functionality!
 
 e.g:
 our ViewSet is called `DummyViewSetFixture`
+
 ```python
 import pytest
-from tests.test_app.models import DummyModel
-from tests.test_app.views import DummyViewSetFixture
+from tests.test_server.test_app.models import DummyModel
+from tests.test_server.test_app.views import DummyViewSetFixture
+
 
 @pytest.mark.action_api(view_set_class=DummyViewSetFixture)
 def test_call_as_api_fixture(db, action_api):
-    dummy_model = DummyModel()
-    dummy_model.dummy_int = 1
-    dummy_model.save()
-    res = action_api.api_dummy(pk=1)
-    assert res["dummy_int"] == 1
+  dummy_model = DummyModel()
+  dummy_model.dummy_int = 1
+  dummy_model.save()
+  res = action_api.api_dummy(pk=1)
+  assert res["dummy_int"] == 1
 
 ```
 
 ```python
 import pytest
-from tests.test_app.views import DummyViewSetFixture
+from tests.test_server.test_app.views import DummyViewSetFixture
+
 
 @pytest.mark.action_api(view_set_class=DummyViewSetFixture)
 def test_dummy(db, action_api):
-    result = action_api.dummy(pk='bbb')
-    assert result['dummy_int'] == 1
+  result = action_api.dummy(pk='bbb')
+  assert result['dummy_int'] == 1
 ```
 
 ```shell
@@ -123,17 +128,10 @@ and so on....
 
 ## Package Testing
 
-The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests, follow these steps:
-
-1. Navigate to the root directory of the `drf-api-action/` project.
-```shell
-cd tests/
-```
-
-2. Run the tests using `pytest`
+The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests run `pytest`:
 
  ```shell
- python -m pytest -vv
+ PYTHONPATH=`pwd` pytest
  ```
 
 The tests will be executed, and the results will be displayed in the console.
