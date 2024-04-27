@@ -19,10 +19,6 @@ Features:
 * **Pagination Support**: Paginating easily through pages by a single kwarg.
 
 
-## Demo
-
-![Alt Text](resources/drf-api-action-usage.gif?raw=true "")
-
 ## Installation
 
 You can install `drf-api-action` using pip:
@@ -131,7 +127,7 @@ and so on....
 The `drf-api-action` library includes tests to ensure the functionality works as expected. To run the tests run `pytest`:
 
  ```shell
- PYTHONPATH=`pwd` pytest
+ pytest
  ```
 
 The tests will be executed, and the results will be displayed in the console.
