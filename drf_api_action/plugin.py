@@ -17,7 +17,7 @@ def action_api(request):
     """
     Make Dango WebView endpoints accessible
     """
-    from drf_api_action.mixins import APIRestMixin
+    from drf_api_action.mixins import APIRestMixin  # pylint: disable=import-outside-toplevel
 
     if request.keywords['action_api'].kwargs.get("view_set_class") is None:
         raise ActionsAPIException('using action_api fixture must require a view_set_class kwarg')
