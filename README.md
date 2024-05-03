@@ -10,13 +10,13 @@ With the action_api fixture, this package empowers you to effortlessly test your
 
 Features:
 
-* **Simplified Testing:** Testing DRF REST endpoints using the api-action decorator, treating them like regular functions.
+* **Simplified Testing:** Testing DRF REST endpoints using the action_api plugin, treating them like regular functions.
 
-* **Seamless Integration:** Replacing DRF's action decorator with api-action in your WebViewSet seamlessly.
+* **Seamless Integration:** you don't need to do anything in existing server code.
 
-* **Clear Traceback:** Instead of getting a response with error code, get the real traceback that led to the error.
+* **Easy Debugging:** Instead of getting a response with error code by using default drf testing `client` object , get the real traceback that led to the error.
 
-* **Pagination Support**: Paginating easily through pages by a single kwarg.
+* **Pagination Support**: Paginating easily through pages by using `page` argument.
 
 
 ## Installation
@@ -118,8 +118,31 @@ filter_kwargs = {'pk': 'bb'}
 >           return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
 
 ../venv/lib/python3.9/site-packages/rest_framework/generics.py:19: 
+....
+....
+...
+```
 
-and so on....
+Call endpoints with pagination:
+```python
+@pytest.mark.action_api(view_set_class=DummyAPIViewSet)
+def test_pagination_data(db, action_api):
+    for i in range(1, 3):
+        dummy_model = DummyModel()
+        dummy_model.dummy_int = 1
+        dummy_model.save()
+
+    response = action_api.by_dummy_int(dummy_int=1, page=1)
+
+    obj = response['results'][0]
+    assert obj['dummy_int'] == 1
+
+    assert extract_page_number(response['next']) == 2
+
+    response = action_api.by_dummy_int(dummy_int=1, page=2)
+    assert extract_page_number(response['previous']) == 1
+    assert extract_page_number(response['next']) is None
+
 ```
 
 
