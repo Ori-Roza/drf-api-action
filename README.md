@@ -31,7 +31,7 @@ pip install drf-api-action
 
 ### To use `drf-api-action` as a Pytest fixture, you need to follow these steps:
 
-#### Step 1: Import the Required Classes and our fixture
+#### Step 1: Import your Viewsets explicitly:
 
 ```python
 import pytest
@@ -77,6 +77,7 @@ def test_call_as_api_fixture(db, action_api):
   assert res["dummy_int"] == 1
 
 ```
+Here as an example, the real exception and trace will be thrown, make it easy to understand what the issue is:
 
 ```python
 import pytest
