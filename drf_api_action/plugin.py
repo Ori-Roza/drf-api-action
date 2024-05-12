@@ -28,6 +28,7 @@ def api_action(request):
         def __getattribute__(self, item):
             class_attribute = super().__getattribute__(item)
 
+            # running our logic on endpoints only
             if callable(class_attribute) and hasattr(class_attribute, 'detail'):
                 return run_function(self, class_attribute)
 
