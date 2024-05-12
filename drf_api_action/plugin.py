@@ -13,16 +13,16 @@ def run_function(self, func):
 
 
 @pytest.fixture
-def action_api(request):
+def api_action(request):
     """
     Make Dango WebView endpoints accessible
     """
     from drf_api_action.mixins import APIRestMixin  # pylint: disable=import-outside-toplevel
 
-    if request.keywords['action_api'].kwargs.get("view_set_class") is None:
-        raise ActionsAPIException('using action_api fixture must require a view_set_class kwarg')
+    if request.keywords['api_action'].kwargs.get("view_set_class") is None:
+        raise ActionsAPIException('using api_action fixture must require a view_set_class kwarg')
 
-    view_set_class = request.keywords['action_api'].kwargs["view_set_class"]
+    view_set_class = request.keywords['api_action'].kwargs["view_set_class"]
 
     class WrapperApiClass(APIRestMixin, view_set_class):
         def __getattribute__(self, item):

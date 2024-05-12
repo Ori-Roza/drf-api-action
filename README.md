@@ -6,11 +6,11 @@
 
 
 The drf-api-action Python package is designed to elevate your testing experience for Django Rest Framework (DRF) REST endpoints.
-With the action_api fixture, this package empowers you to effortlessly test your REST endpoints as if they were conventional functions.
+With the api_action fixture, this package empowers you to effortlessly test your REST endpoints as if they were conventional functions.
 
 Features:
 
-* **Simplified Testing:** Testing DRF REST endpoints using the action_api plugin, treating them like regular functions.
+* **Simplified Testing:** Testing DRF REST endpoints using the api_action plugin, treating them like regular functions.
 
 * **Seamless Integration:** you don't need to do anything in existing server code.
 
@@ -41,7 +41,7 @@ from tests.test_server.test_app.views import DummyViewSetFixture
 
 #### Step 2: use the following action_api mark decorator:
 
-`@pytest.mark.action_api(view_set_class={YOUR VIEW_SET})`
+`@pytest.mark.api_action(view_set_class={YOUR VIEW_SET})`
 
 e.g:
 our ViewSet is called `DummyViewSetFixture`
@@ -51,8 +51,8 @@ import pytest
 from tests.test_server.test_app.views import DummyViewSetFixture
 
 
-@pytest.mark.action_api(view_set_class=DummyViewSetFixture)
-def test_call_as_api_fixture(db, action_api):
+@pytest.mark.api_action(view_set_class=DummyViewSetFixture)
+def test_call_as_api_fixture(db, api_action):
   pass
 ```
 Now you can use all `DummyViewSetFixture` functionality!
@@ -68,12 +68,12 @@ from tests.test_server.test_app.models import DummyModel
 from tests.test_server.test_app.views import DummyViewSetFixture
 
 
-@pytest.mark.action_api(view_set_class=DummyViewSetFixture)
-def test_call_as_api_fixture(db, action_api):
+@pytest.mark.api_action(view_set_class=DummyViewSetFixture)
+def test_call_as_api_fixture(db, api_action):
   dummy_model = DummyModel()
   dummy_model.dummy_int = 1
   dummy_model.save()
-  res = action_api.api_dummy(pk=1)
+  res = api_action.api_dummy(pk=1)
   assert res["dummy_int"] == 1
 
 ```
@@ -84,9 +84,9 @@ import pytest
 from tests.test_server.test_app.views import DummyViewSetFixture
 
 
-@pytest.mark.action_api(view_set_class=DummyViewSetFixture)
-def test_dummy(db, action_api):
-  result = action_api.dummy(pk='bbb')
+@pytest.mark.api_action(view_set_class=DummyViewSetFixture)
+def test_dummy(db, api_action):
+  result = api_action.dummy(pk='bbb')
   assert result['dummy_int'] == 1
 ```
 
@@ -125,21 +125,21 @@ filter_kwargs = {'pk': 'bb'}
 
 Call endpoints with pagination:
 ```python
-@pytest.mark.action_api(view_set_class=DummyAPIViewSet)
-def test_pagination_data(db, action_api):
+@pytest.mark.api_action(view_set_class=DummyAPIViewSet)
+def test_pagination_data(db, api_action):
     for i in range(1, 3):
         dummy_model = DummyModel()
         dummy_model.dummy_int = 1
         dummy_model.save()
 
-    response = action_api.by_dummy_int(dummy_int=1, page=1)
+    response = api_action.by_dummy_int(dummy_int=1, page=1)
 
     obj = response['results'][0]
     assert obj['dummy_int'] == 1
 
     assert extract_page_number(response['next']) == 2
 
-    response = action_api.by_dummy_int(dummy_int=1, page=2)
+    response = api_action.by_dummy_int(dummy_int=1, page=2)
     assert extract_page_number(response['previous']) == 1
     assert extract_page_number(response['next']) is None
 
