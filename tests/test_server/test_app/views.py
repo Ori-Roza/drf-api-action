@@ -58,7 +58,6 @@ class DummyAPIViewSet(ModelViewSet):
 
     @action(detail=False, methods=["post"], serializer_class=GetDummyByIntSerializer)
     def by_dummy_int(self, request, **kwargs):
-        breakpoint()
         self.get_serializer(data=request.data).is_valid(raise_exception=True)
         queryset = DummyModel.objects.filter(dummy_int=request.data["dummy_int"]).order_by("id")
         page = self.paginate_queryset(queryset)
