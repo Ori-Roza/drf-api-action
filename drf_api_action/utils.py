@@ -21,10 +21,11 @@ class CustomRequest:
 
 def run_as_api(self, func, serializer_class, *args, **kw):
     # adding to the view the request & kwargs including the serializer class
-    kw.update({"serializer_class": serializer_class})
+    kw.update({"serializer_class": serializer_class})  # adding serializer class from @action
+    # decorator into our instance
     request = CustomRequest(kw, kw)
-    self.kwargs = kw
-    self.request = request
+    self.kwargs = kw  # adding our enhanced kwargs into instance kwargs
+    self.request = request  # mocking request with our arguments as data in the instance
 
     try:
         ret = func(request, **kw)

@@ -6,6 +6,7 @@ from drf_api_action.exceptions import ActionsAPIException
 
 def run_function(self, func):
     def api_item(*args, **kwargs):
+        # here we retrieve serializer_class from @action decorator in order to inject it to the ViewSet
         serializer_class = func.kwargs['serializer_class']
         return run_as_api(self, func, serializer_class, *args, **kwargs)
 
