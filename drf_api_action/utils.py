@@ -1,5 +1,4 @@
 from typing import Optional
-from drf_api_action.exceptions import ActionsAPIExceptionMiddleware
 
 
 class CustomRequest:
@@ -27,19 +26,11 @@ def run_as_api(self, func, serializer_class, *args, **kw):
     self.kwargs = kw  # adding our enhanced kwargs into instance kwargs
     self.request = request  # mocking request with our arguments as data in the instance
 
-    try:
-        ret = func(request, **kw)
-        if isinstance(ret.data, list):  # multiple results
-            results = [dict(res) for res in ret.data]
-        else:  # only one json
-            results = {k.lower(): v for k, v in ret.data.items()}
-    except Exception as error:  # pylint: disable=broad-except
-        error_type = type(error)
-        # re-constructing the error with the actual traceback
-        raised_exception = ActionsAPIExceptionMiddleware(*error.args,
-                                                         error_type=error_type,
-                                                         traceback=error.__traceback__)  # fixing stack frames
-        raise raised_exception  # pylint: disable=raising-non-exception
+    ret = func(request, **kw)  # evaluating endpoint
+    if isinstance(ret.data, list):  # multiple results
+        results = [dict(res) for res in ret.data]
+    else:  # only one json
+        results = {k.lower(): v for k, v in ret.data.items()}
 
     return results
 
