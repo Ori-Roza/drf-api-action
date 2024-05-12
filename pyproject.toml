@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "drf_api_action"
-version = "1.2.0"
+version = "1.2.1"
 description = "drf-api-action elevates DRF testing by simplifying REST endpoint testing to a seamless, function-like experience."
 readme = "README.md"
 authors = ["Ori Roza <ori75660@gmail.com>"]
@@ -41,7 +41,7 @@ classifiers = [
 DJANGO_SETTINGS_MODULE = "tests.test_server.settings"
 python_files = "tests.py test_*.py *_tests.py"
 markers = [
-    "action_api: Viewset"
+    "api_action: Viewset"
 ]
 testpaths = ["tests"]
 

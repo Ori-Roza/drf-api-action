@@ -12,28 +12,30 @@ class CustomRequest:
         self.query_params = query_params
 
     def build_absolute_uri(self, _=None):
+        """
+        mocking django/http/request.py::HTTPRequest::build_absolute_uri
+        It's irrelevant since we do not provide any web resource
+        """
         return ''
 
 
 def run_as_api(self, func, serializer_class, *args, **kw):
-    kw.update({"serializer_class": serializer_class})
+    # adding to the view the request & kwargs including the serializer class
+    kw.update({"serializer_class": serializer_class})  # adding serializer class from @action
+    # decorator into our instance
     request = CustomRequest(kw, kw)
-    self.kwargs = kw
-    self.request = request
+    self.kwargs = kw  # adding our enhanced kwargs into instance kwargs
+    self.request = request  # mocking request with our arguments as data in the instance
 
     try:
-        if hasattr(func, 'detail'):
-            # called from pytest fixture
-            ret = func(request, **kw)
-        else:
-            # called straight from viewer
-            ret = func(self, request, **kw)
+        ret = func(request, **kw)
         if isinstance(ret.data, list):  # multiple results
             results = [dict(res) for res in ret.data]
-        else:
+        else:  # only one json
             results = {k.lower(): v for k, v in ret.data.items()}
     except Exception as error:  # pylint: disable=broad-except
         error_type = type(error)
+        # re-constructing the error with the actual traceback
         raised_exception = ActionsAPIExceptionMiddleware(*error.args,
                                                          error_type=error_type,
                                                          traceback=error.__traceback__)  # fixing stack frames
